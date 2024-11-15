@@ -4,9 +4,11 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 import NewCourse from './pages/NewCourse';
+import Header from './components/Header.tsx';
 
 export default function App() {
   return (
+    
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />

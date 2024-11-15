@@ -1,7 +1,13 @@
+import Page from "@/components/Page";
+
 export default function NewCourse() {
-    return (
-      <>
-      </>
-    );
-  }
-  
+  const content = (
+    <div>
+      <p>new course</p>
+    </div>
+  );
+
+  return (
+    <Page content={content} />
+  );
+}

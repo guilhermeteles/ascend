@@ -1,17 +1,14 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-
+import Page from "@/components/Page";
 
 export default function Home() {
-  return (
-    <div className="relative flex flex-col bg-green-200 h-full justify-between h-screen">
-      <Header />
-      <div className="grow">
-        <div className="container mx-auto h-[100px] bg-green-400">
-
-        </div>
-      </div>
-      <Footer />
+  const content = (
+    <div>
+      <h1 className="text-xl font-bold">Dynamic Content</h1>
+      <p>This is a dynamically passed HTML content with styles!</p>
     </div>
+  );
+
+  return (
+    <Page content={content} />
   );
 }
