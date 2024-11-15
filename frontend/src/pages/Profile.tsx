@@ -1,4 +1,4 @@
-export default function NewCourse() {
+export default function Profile() {
     return (
       <>
       </>
