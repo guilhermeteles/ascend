@@ -12,7 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 export default function LoginCard() {
   return (
-    <Card className="mx-auto max-w-sm bg-white">
+    <Card className="mx-auto bg-white w-[400px]">
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>

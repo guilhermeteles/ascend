@@ -8,4 +8,4 @@ export const headerHeight = (): number => {
     return footer ? footer.offsetHeight : 0; // Return the height as a number
   };
 
-  export const paddingX = 'px-20'
+export const paddingX = 'px-20'
