@@ -2,8 +2,11 @@
 module.exports = {
     darkMode: ["class"],
     content: [
-		"./index.html", 
-		"./src/**/*.{ts,tsx,js,jsx}", 
+		"./pages/**/*.{ts,tsx}",
+		"./components/**/*.{ts,tsx}",
+		"./@/components/**/*.{ts,tsx}",
+		"./app/**/*.{ts,tsx}",
+		"./src/**/*.{ts,tsx}",
 		"./node_modules/@shadcn/ui/**/*.{js,ts,jsx,tsx}"],
   theme: {
   	extend: {

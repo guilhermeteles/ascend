@@ -1,9 +1,9 @@
+import { paddingX } from "@/constants/layout";
+
 export default function Footer() {
     return (
-        <div className="fixed bottom-0 w-full mx-auto bg-gray-200">
-            <div className="container mx-auto bg-gray-400">
-                footer
-            </div>
+        <div id='footer' className={`fixed bottom-0 w-full bg-gray-400 flex justify-between ${paddingX} py-2`}>
+            footer
         </div>
     );
 }

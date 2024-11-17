@@ -1,3 +1,73 @@
+/* Tailwind Base Styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Root Variables */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 13% 18%;
+    --card: 0 0% 95%;
+    --card-foreground: 220 13% 18%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 220 13% 18%;
+    --primary: 240 60% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4% 63%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 4% 95%;
+    --muted-foreground: 220 8% 46%;
+    --accent: 240 100% 80%;
+    --accent-foreground: 240 10% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 240 100% 70%;
+    --radius: 0.5rem;
+    --chart-1: 200 80% 60%;
+    --chart-2: 150 70% 50%;
+    --chart-3: 100 60% 40%;
+    --chart-4: 50 50% 30%;
+    --chart-5: 0 40% 20%;
+    --font-sans: 'Inter', sans-serif;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--background));
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+  }
+
+  /* Box Shadows */
+  .shadow-sm {
+    box-shadow: 0 1px 2px hsl(var(--foreground) / 0.05);
+  }
+
+  .shadow {
+    box-shadow: 0 1px 3px hsl(var(--foreground) / 0.1),
+      0 1px 2px hsl(var(--foreground) / 0.06);
+  }
+
+  .shadow-md {
+    box-shadow: 0 4px 6px hsl(var(--foreground) / 0.1),
+      0 2px 4px hsl(var(--foreground) / 0.06);
+  }
+
+  .shadow-lg {
+    box-shadow: 0 10px 15px hsl(var(--foreground) / 0.1),
+      0 4px 6px hsl(var(--foreground) / 0.05);
+  }
+
+  .shadow-xl {
+    box-shadow: 0 20px 25px hsl(var(--foreground) / 0.1),
+      0 10px 10px hsl(var(--foreground) / 0.04);
+  }
+}

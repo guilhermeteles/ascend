@@ -1,9 +1,10 @@
+import LoginCard from "@/components/LoginCard";
 import Page from "@/components/Page";
 
 export default function Login() {
   const content = (
-    <div>
-      <p>Login</p>
+    <div className="flex h-full items-center mx-auto">
+      <LoginCard />
     </div>
   );
 
