@@ -28,7 +28,7 @@ export default function Page({ content }: PageProps) {
   return (
     <div className="relative flex flex-col justify-between h-screen">
       <Header />
-      <div className="grow bg-gray-50" style={{ marginTop: `${headerH}px`, paddingBottom: `${footerH}px` }}>
+      <div className="grow bg-slate-50" style={{ marginTop: `${headerH}px`, paddingBottom: `${footerH}px` }}>
 
         {content}
 

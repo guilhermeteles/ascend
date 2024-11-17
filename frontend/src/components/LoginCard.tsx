@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,6 +14,31 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export default function LoginCard() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("Logged in successfully");
+    } catch (err) {
+      setError("Invalid email or password");
+      console.error(err);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      console.log("Logged in with Google");
+    } catch (err) {
+      setError("Failed to log in with Google");
+      console.error(err);
+    }
+  };
+
   return (
     <Card className="mx-auto bg-white w-[400px]">
       <CardHeader>
@@ -21,49 +49,40 @@ export default function LoginCard() {
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
-          {/* Email Input */}
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
               placeholder="m@example.com"
-              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          {/* Password Input */}
           <div className="grid gap-2">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="password">Password</Label>
-              <a
-                href="/forgot-password"
-                className="text-sm text-blue-500 hover:underline"
-              >
-                Forgot your password?
-              </a>
-            </div>
-            <Input id="password" type="password" required />
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
+              type="password"
+              placeholder="Your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          {/* Remember Me Checkbox */}
           <div className="flex items-center gap-2">
             <Checkbox id="remember" />
             <Label htmlFor="remember" className="text-sm">
               Remember me
             </Label>
           </div>
-          {/* Login Button */}
-          <Button type="submit" className="w-full">
+          <Button onClick={handleLogin} className="w-full">
             Login
           </Button>
-          {/* Social Login */}
-          <Button variant="outline" className="w-full">
+          <Button onClick={handleGoogleLogin} variant="outline" className="w-full">
             Login with Google
           </Button>
-          <Button variant="outline" className="w-full">
-            Login with Facebook
-          </Button>
         </div>
-        {/* Sign Up Prompt */}
+        {error && <p className="text-red-500 mt-2">{error}</p>}
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
           <a href="/signup" className="text-blue-500 hover:underline">

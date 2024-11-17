@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,6 +14,36 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export default function SignUpCard() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSignup = async () => {
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      console.log("Account created successfully");
+    } catch (err) {
+      setError("Failed to create an account");
+      console.error(err);
+    }
+  };
+
+  const handleGoogleSignup = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      console.log("Signed up with Google");
+    } catch (err) {
+      setError("Failed to sign up with Google");
+      console.error(err);
+    }
+  };
+
   return (
     <Card className="mx-auto bg-white w-[400px]">
       <CardHeader>
@@ -21,47 +54,36 @@ export default function SignUpCard() {
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
-          {/* Full Name Input */}
-          <div className="grid gap-2">
-            <Label htmlFor="name">Full Name</Label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Your full name"
-              required
-            />
-          </div>
-          {/* Email Input */}
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
               placeholder="m@example.com"
-              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          {/* Password Input */}
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
             <Input
               id="password"
               type="password"
               placeholder="Create a strong password"
-              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {/* Confirm Password Input */}
           <div className="grid gap-2">
             <Label htmlFor="confirm-password">Confirm Password</Label>
             <Input
               id="confirm-password"
               type="password"
               placeholder="Confirm your password"
-              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
-          {/* Terms and Conditions */}
           <div className="flex items-center gap-2">
             <Checkbox id="terms" required />
             <Label htmlFor="terms" className="text-sm">
@@ -71,19 +93,14 @@ export default function SignUpCard() {
               </a>
             </Label>
           </div>
-          {/* Sign Up Button */}
-          <Button type="submit" className="w-full">
+          <Button onClick={handleSignup} className="w-full">
             Sign Up
           </Button>
-          {/* Social Sign Up */}
-          <Button variant="outline" className="w-full">
+          <Button onClick={handleGoogleSignup} variant="outline" className="w-full">
             Sign Up with Google
           </Button>
-          <Button variant="outline" className="w-full">
-            Sign Up with Facebook
-          </Button>
         </div>
-        {/* Login Redirect */}
+        {error && <p className="text-red-500 mt-2">{error}</p>}
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
           <a href="/login" className="text-blue-500 hover:underline">

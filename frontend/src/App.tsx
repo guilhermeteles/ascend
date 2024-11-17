@@ -3,8 +3,8 @@ import Home from './pages/Home.tsx';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
+import Dashboard from './pages/Dashboard.tsx';
 import NewCourse from './pages/NewCourse';
-import Header from './components/Header.tsx';
 
 export default function App() {
   return (
@@ -15,6 +15,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/new-course" element={<NewCourse />} />
       </Routes>
     </Router>
