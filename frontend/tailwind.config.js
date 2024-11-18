@@ -10,6 +10,9 @@ module.exports = {
 		"./node_modules/@shadcn/ui/**/*.{js,ts,jsx,tsx}"],
   theme: {
   	extend: {
+		fontFamily: {
+			sans: ['"Noto Sans"', 'system-ui', 'sans-serif'], // Add Noto Sans as the primary sans font
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

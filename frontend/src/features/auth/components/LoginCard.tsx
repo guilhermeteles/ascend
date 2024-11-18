@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,33 +14,31 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
-export default function SignUpCard() {
+export default function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // Hook to navigate between routes
 
-  const handleSignup = async () => {
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+  const handleLogin = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      console.log("Account created successfully");
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("Logged in successfully");
+      navigate("/dashboard"); // Redirect to Dashboard after login
     } catch (err) {
-      setError("Failed to create an account");
+      setError("Invalid email or password");
       console.error(err);
     }
   };
 
-  const handleGoogleSignup = async () => {
+  const handleGoogleLogin = async () => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      console.log("Signed up with Google");
+      console.log("Logged in with Google");
+      navigate("/dashboard"); // Redirect to Dashboard after Google login
     } catch (err) {
-      setError("Failed to sign up with Google");
+      setError("Failed to log in with Google");
       console.error(err);
     }
   };
@@ -47,9 +46,9 @@ export default function SignUpCard() {
   return (
     <Card className="mx-auto bg-white w-[400px]">
       <CardHeader>
-        <CardTitle className="text-2xl">Sign Up</CardTitle>
+        <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>
-          Create an account to access all features
+          Enter your email and password to access your account
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -69,42 +68,29 @@ export default function SignUpCard() {
             <Input
               id="password"
               type="password"
-              placeholder="Create a strong password"
+              placeholder="Your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="confirm-password">Confirm Password</Label>
-            <Input
-              id="confirm-password"
-              type="password"
-              placeholder="Confirm your password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
           <div className="flex items-center gap-2">
-            <Checkbox id="terms" required />
-            <Label htmlFor="terms" className="text-sm">
-              I agree to the{" "}
-              <a href="/terms" className="text-blue-500 hover:underline">
-                terms and conditions
-              </a>
+            <Checkbox id="remember" />
+            <Label htmlFor="remember" className="text-sm">
+              Remember me
             </Label>
           </div>
-          <Button onClick={handleSignup} className="w-full">
-            Sign Up
+          <Button onClick={handleLogin} className="w-full">
+            Login
           </Button>
-          <Button onClick={handleGoogleSignup} variant="outline" className="w-full">
-            Sign Up with Google
+          <Button onClick={handleGoogleLogin} variant="outline" className="w-full">
+            Login with Google
           </Button>
         </div>
         {error && <p className="text-red-500 mt-2">{error}</p>}
         <div className="mt-4 text-center text-sm">
-          Already have an account?{" "}
-          <a href="/login" className="text-blue-500 hover:underline">
-            Login
+          Don&apos;t have an account?{" "}
+          <a href="/signup" className="text-blue-500 hover:underline">
+            Sign up
           </a>
         </div>
       </CardContent>

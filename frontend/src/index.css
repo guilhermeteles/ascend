@@ -1,4 +1,4 @@
-/* Tailwind Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');/* Tailwind Base Styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,33 +6,34 @@
 /* Root Variables */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 13% 18%;
-    --card: 0 0% 95%;
-    --card-foreground: 220 13% 18%;
-    --popover: 0 0% 98%;
-    --popover-foreground: 220 13% 18%;
-    --primary: 240 60% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 4% 63%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 240 4% 95%;
-    --muted-foreground: 220 8% 46%;
-    --accent: 240 100% 80%;
-    --accent-foreground: 240 10% 15%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 240 100% 70%;
-    --radius: 0.5rem;
-    --chart-1: 200 80% 60%;
-    --chart-2: 150 70% 50%;
-    --chart-3: 100 60% 40%;
-    --chart-4: 50 50% 30%;
-    --chart-5: 0 40% 20%;
-    --font-sans: 'Inter', sans-serif;
-  }
+    --background: 0 0% 98%; /* Soft off-white */
+    --foreground: 220 15% 20%; /* Neutral dark gray for text */
+    --card: 0 0% 100%; /* Pure white for cards */
+    --card-foreground: 220 15% 20%; /* Same as foreground for text */
+    --popover: 0 0% 97%; /* Slightly darker than background for differentiation */
+    --popover-foreground: 220 15% 20%; /* Same as foreground */
+    --primary: 210 90% 55%; /* Calm blue */
+    --primary-foreground: 0 0% 100%; /* White for contrast on primary */
+    --secondary: 190 50% 75%; /* Muted teal */
+    --secondary-foreground: 220 15% 20%; /* Same as foreground */
+    --muted: 0 0% 92%; /* Light gray for muted elements */
+    --muted-foreground: 220 10% 40%; /* Softer gray for contrast */
+    --accent: 340 80% 70%; /* Light pink accent */
+    --accent-foreground: 220 10% 15%; /* Darker for text contrast */
+    --destructive: 0 70% 60%; /* Softer red for warnings */
+    --destructive-foreground: 0 0% 100%; /* White for readability */
+    --border: 220 13% 88%; /* Soft gray border */
+    --input: 220 13% 88%; /* Matches border for input consistency */
+    --ring: 210 80% 70%; /* Soft blue ring for focus */
+    --radius: 0.5rem; /* Keep as is */
+    --chart-1: 210 80% 55%; /* Soft blue for charts */
+    --chart-2: 160 70% 50%; /* Muted green */
+    --chart-3: 120 60% 45%; /* Soft green */
+    --chart-4: 60 50% 40%; /* Yellow-green */
+    --chart-5: 0 50% 35%; /* Muted red */
+    --font-sans: 'Noto Sans', sans-serif; /* Retain the font */
+}
+
 
   html {
     font-family: var(--font-sans);
